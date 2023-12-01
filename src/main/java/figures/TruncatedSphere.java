@@ -11,14 +11,14 @@ import static consts.Consts.FIRST_RADIX;
 import static consts.Consts.SECOND_RADIX;
 import static consts.Consts.THIRD_RADIX;
 
-public class Truncated_sphere extends Figure {
+public class TruncatedSphere extends Figure {
 
     private double radius;
     private double truncatedRadius;
     private double height;
     private final int pointSize;
 
-    public Truncated_sphere(ArrayList<Integer> point) {
+    public TruncatedSphere(ArrayList<Integer> point) {
         this.pointSize = point.size();
         ArrayList<Integer> centerPoint = new ArrayList<>();
         ArrayList<Integer> randomPoint = new ArrayList<>();

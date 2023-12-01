@@ -1,5 +1,8 @@
 package figures;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 
 import static consts.Consts.TWO_POINTS;
@@ -16,6 +19,7 @@ public class Cylinder extends Figure {
 
     private final double pointSize;
     private double radius;
+    private double hypotenuse;
     private double height;
 
     public Cylinder (ArrayList<Integer> point) {
@@ -30,20 +34,25 @@ public class Cylinder extends Figure {
                     this.randomPoint.add(point.get(i));
                 }
             }
+
+            double radius1 = getLength(bottomCenterPoint, randomPoint);
+            double radius2 = getLength(topCenterPoint, randomPoint);
+
+            this.radius = Math.min(radius1, radius2);
+            this.hypotenuse = Math.max(radius1, radius2);
+            this.height = getLength(bottomCenterPoint, topCenterPoint);
         }
     }
 
     @Override
     public boolean check() {
         if (pointSize == THREE_DIMENSIONAL_THREE_POINTS) {
-            double radius1 = getLength(bottomCenterPoint, randomPoint);
-            double radius2 = getLength(topCenterPoint, randomPoint);
+            MathContext context = new MathContext(5, RoundingMode.HALF_UP);
 
-            this.radius = Math.min(radius1, radius2);
-            double hypotenuse = Math.max(radius1, radius2);
-            this.height = getLength(bottomCenterPoint, topCenterPoint);
+            BigDecimal result1 = new BigDecimal(hypotenuse, context);
+            BigDecimal result2 = new BigDecimal(Math.sqrt(Math.pow(radius, DEGREE) + Math.pow(height, DEGREE)), context);
 
-            if (hypotenuse == Math.sqrt(Math.pow(radius, DEGREE) + Math.pow(height, DEGREE))) {
+            if (result1.equals(result2)) {
                 System.out.println("The figure is valid");
                 return true;
             } else {

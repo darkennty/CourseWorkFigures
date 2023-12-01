@@ -8,7 +8,7 @@ import figures.Rectangle;
 import figures.Sphere;
 import figures.Square;
 import figures.Triangle;
-import figures.Truncated_sphere;
+import figures.TruncatedSphere;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -106,7 +106,7 @@ public class Main {
                 }
                 case "TRUNCATED_SPHERE" -> {
                     addRadix(scanner, point);
-                    Truncated_sphere truncated = new Truncated_sphere(point);
+                    TruncatedSphere truncated = new TruncatedSphere(point);
                     if (truncated.check()) {
                         truncated.perimeter();
                         truncated.area();
