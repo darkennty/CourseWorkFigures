@@ -15,6 +15,7 @@ public class Cone extends Figure {
     private final ArrayList<Integer> topPoint = new ArrayList<>();
 
     private final double pointSize;
+    private double area;
 
     public Cone (ArrayList<Integer> point) {
         this.pointSize = point.size();
@@ -65,5 +66,14 @@ public class Cone extends Figure {
         double generatrix = getLength(randomPoint, topPoint);
         double area = PI * radius * generatrix + PI * Math.pow(radius, DEGREE);
         System.out.printf("%.2f\n", area);
+        this.area = area;
+    }
+
+    public String getPerimeter() {
+        return "The figure has no perimeter";
+    }
+
+    public double getArea() {
+        return Math.round(this.area * 100.0) / 100.0;
     }
 }

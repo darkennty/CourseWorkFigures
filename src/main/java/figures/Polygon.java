@@ -22,6 +22,8 @@ public class Polygon extends Figure {
     private final int pointSize;
     boolean twoDimension;
     boolean threeDimension;
+    private double perimeter;
+    private double area;
 
     public Polygon(ArrayList<Integer> point) {
         this.pointSize = point.size();
@@ -44,25 +46,60 @@ public class Polygon extends Figure {
 
     @Override
     public boolean check() {
-        boolean flag = false;
+        boolean flag = true;
+
         if (this.threeDimension) {
-            int size = pointSize / 3;
-            double determinant = 0;
+
+            int size = pointSize / THREE_POINTS;
+
             for (int i = 0; i < size; i++) {
                 int j = (i + SECOND_RADIX) % size;
                 int k = (i + THIRD_RADIX) % size;
+                int[] vector1 = new int[3];
+                int[] vector2 = new int[3];
 
-                if (i % MULTIPLE_OF_TWO == 0) {
-                    determinant = determinant + xRadix.get(i) * (yRadix.get(j) * zRadix.get(k) - yRadix.get(k) * zRadix.get(j));
-                } else {
-                    determinant = determinant - xRadix.get(i) * (yRadix.get(j) * zRadix.get(k) - yRadix.get(k) * zRadix.get(j));
+                vector1[FIRST_RADIX] = xRadix.get(j) - xRadix.get(i);
+                vector1[SECOND_RADIX] = yRadix.get(j) - yRadix.get(i);
+                vector1[THIRD_RADIX] = zRadix.get(j) - zRadix.get(i);
+
+                vector2[FIRST_RADIX] = xRadix.get(k) - xRadix.get(j);
+                vector2[SECOND_RADIX] = yRadix.get(k) - yRadix.get(j);
+                vector2[THIRD_RADIX] = zRadix.get(k) - zRadix.get(j);
+
+                double firstPartOfDeterminant = vector1[SECOND_RADIX] * vector2[THIRD_RADIX] - vector2[SECOND_RADIX] * vector1[THIRD_RADIX];
+                double secondPartOfDeterminant = vector1[FIRST_RADIX] * vector2[THIRD_RADIX] - vector2[FIRST_RADIX] * vector1[THIRD_RADIX];
+                double thirdPartOfDeterminant = vector1[FIRST_RADIX] * vector2[SECOND_RADIX] - vector2[FIRST_RADIX] * vector1[SECOND_RADIX];
+
+                if (firstPartOfDeterminant - secondPartOfDeterminant + thirdPartOfDeterminant == 0) {
+                    flag = false;
+                    break;
                 }
             }
-            if (determinant == 0) {
-                flag = true;
-            }
         } else if (this.twoDimension) {
-            flag = true;
+
+            int size = pointSize / TWO_POINTS;
+
+            for (int i = 0; i < size; i++) {
+                int j = (i + SECOND_RADIX) % size;
+                int k = (i + THIRD_RADIX) % size;
+                int[] vector1 = new int[2];
+                int[] vector2 = new int[2];
+
+                vector1[FIRST_RADIX] = xRadix.get(j) - xRadix.get(i);
+                vector1[SECOND_RADIX] = yRadix.get(j) - yRadix.get(i);
+
+                vector2[FIRST_RADIX] = xRadix.get(k) - xRadix.get(j);
+                vector2[SECOND_RADIX] = yRadix.get(k) - yRadix.get(j);
+
+                double determinant = vector1[FIRST_RADIX] * vector2[SECOND_RADIX] - vector2[FIRST_RADIX] * vector1[SECOND_RADIX];
+
+                if (determinant == 0) {
+                    flag = false;
+                    break;
+                }
+            }
+        } else {
+            flag = false;
         }
 
         if (flag) {
@@ -90,7 +127,9 @@ public class Polygon extends Figure {
                 perimeter = perimeter + Math.sqrt(Math.pow(xRadix.get(j) - xRadix.get(i), DEGREE) + Math.pow(yRadix.get(j) - yRadix.get(i), DEGREE));
             }
         }
+
         System.out.printf("%.2f\n", perimeter);
+        this.perimeter = perimeter;
     }
 
     @Override
@@ -108,9 +147,10 @@ public class Polygon extends Figure {
                 int y2 = yRadix.get(j) - yRadix.get(FIRST_RADIX);
                 int z2 = zRadix.get(j) - zRadix.get(FIRST_RADIX);
 
-                area = Math.sqrt(Math.pow(y1 * z2 - y2 * z1, DEGREE) + Math.pow(-(x1 * z2 - x2 * z1), DEGREE) + Math.pow(x1 * y2 - x2 * y1, DEGREE));
+                area += Math.sqrt(Math.pow(y1 * z2 - y2 * z1, DEGREE) + Math.pow(-(x1 * z2 - x2 * z1), DEGREE) + Math.pow(x1 * y2 - x2 * y1, DEGREE));
             }
-            System.out.printf("%.2f\n", area);
+
+            area /= AREA_DIVIDER;
         } else {
             int size = pointSize / TWO_POINTS;
 
@@ -122,7 +162,20 @@ public class Polygon extends Figure {
                 int y2 = yRadix.get(j);
                 area += (double) (x1 * y2 - x2 * y1) / AREA_DIVIDER;
             }
-            System.out.printf("%.2f\n", Math.abs(area));
         }
+
+        area = Math.abs(area);
+
+        System.out.printf("%.2f\n", area);
+
+        this.area = area;
+    }
+
+    public double getPerimeter() {
+        return Math.round(this.perimeter * 100.0) / 100.0;
+    }
+
+    public double getArea() {
+        return Math.round(this.area * 100.0) / 100.0;
     }
 }

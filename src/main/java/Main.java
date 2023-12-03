@@ -1,14 +1,4 @@
-import figures.Circle;
-import figures.Cone;
-import figures.Cylinder;
-import figures.Figure;
-import figures.Parallelogram;
-import figures.Polygon;
-import figures.Rectangle;
-import figures.Sphere;
-import figures.Square;
-import figures.Triangle;
-import figures.TruncatedSphere;
+import figures.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;

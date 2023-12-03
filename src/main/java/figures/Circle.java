@@ -12,6 +12,8 @@ import static consts.Consts.PI;
 public class Circle extends Figure {
     private double radius;
     private final double pointSize;
+    private double perimeter;
+    private double area;
 
     public Circle(ArrayList<Integer> point) {
         this.pointSize = point.size();
@@ -56,13 +58,23 @@ public class Circle extends Figure {
     @Override
     public void perimeter() {
         final int formulaCoefficient = 2;
-        double answer = formulaCoefficient * PI * radius;
-        System.out.printf("%.2f\n", answer);
+        double perimeter = formulaCoefficient * PI * radius;
+        System.out.printf("%.2f\n", perimeter);
+        this.perimeter = perimeter;
     }
 
     @Override
     public void area() {
-        double answer = PI * Math.pow(radius, DEGREE);
-        System.out.printf("%.2f\n", answer);
+        double area = PI * Math.pow(radius, DEGREE);
+        System.out.printf("%.2f\n", area);
+        this.area = area;
+    }
+
+    public double getPerimeter() {
+        return Math.round(this.perimeter * 100.0) / 100.0;
+    }
+
+    public double getArea() {
+        return Math.round(this.area * 100.0) / 100.0;
     }
 }

@@ -17,6 +17,8 @@ public class Square extends Figure {
     private final ArrayList<Integer> point4 = new ArrayList<>();
     boolean twoDimension;
     boolean threeDimension;
+    private double perimeter;
+    private double area;
 
     public Square(ArrayList<Integer> point) {
         int pointSize = point.size();
@@ -40,6 +42,7 @@ public class Square extends Figure {
 
     public double getLength(ArrayList<Integer> point1, ArrayList<Integer> point2) {
         double length = 0;
+
         if (threeDimension) {
             for (int i = 0; i < THREE_POINTS; i++) {
                 length = length + Math.pow(point1.get(i) - point2.get(i), DEGREE);
@@ -49,7 +52,10 @@ public class Square extends Figure {
                 length = length + Math.pow(point1.get(i) - point2.get(i), DEGREE);
             }
         }
-        return Math.sqrt(length);
+
+        length = Math.sqrt(length);
+
+        return length;
     }
 
     @Override
@@ -74,13 +80,23 @@ public class Square extends Figure {
     public void perimeter() {
         double side = getLength(point1, point2);
         final int fourSides = 4;
-        System.out.printf("%.2f\n", side * fourSides);
+        double perimeter = side * fourSides;
+        System.out.printf("%.2f\n", perimeter);
+        this.perimeter = perimeter;
     }
 
     @Override
     public void area() {
-        double side = getLength(point1, point2);
-        System.out.printf("%.2f\n", Math.pow(side, DEGREE));
+        double area = Math.pow(getLength(point1, point2), DEGREE);
+        System.out.printf("%.2f\n", area);
+        this.area = area;
     }
 
+    public double getPerimeter() {
+        return Math.round(this.perimeter * 100.0) / 100.0;
+    }
+
+    public double getArea() {
+        return Math.round(this.area * 100.0) / 100.0;
+    }
 }

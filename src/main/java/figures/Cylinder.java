@@ -21,6 +21,7 @@ public class Cylinder extends Figure {
     private double radius;
     private double hypotenuse;
     private double height;
+    private double area;
 
     public Cylinder (ArrayList<Integer> point) {
         this.pointSize = point.size();
@@ -79,5 +80,15 @@ public class Cylinder extends Figure {
         double area = areaConst * PI * this.radius * this.height + areaConst * PI * Math.pow(this.radius, DEGREE);
 
         System.out.printf("%.2f\n", area);
+
+        this.area = area;
+    }
+
+    public String getPerimeter() {
+        return "The figure has no perimeter";
+    }
+
+    public double getArea() {
+        return Math.round(this.area * 100.0) / 100.0;
     }
 }

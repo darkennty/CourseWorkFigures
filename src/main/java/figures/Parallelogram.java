@@ -24,6 +24,8 @@ public class Parallelogram extends Figure {
     private final ArrayList<Integer> yRadix = new ArrayList<>();
     boolean twoDimension;
     boolean threeDimension;
+    private double perimeter;
+    private double area;
 
     public Parallelogram(ArrayList<Integer> point) {
         int pointSize = point.size();
@@ -51,19 +53,6 @@ public class Parallelogram extends Figure {
 
         }
     }
-    @Override
-    public boolean check() {
-        if (twoDimension && getLength(point1, point2) == getLength(point3, point4) && getLength(point1,point4) == getLength(point2, point3)) {
-            System.out.println("The figure is valid");
-            return true;
-        } else if (threeDimension) {
-            System.out.println("The figure is valid");
-            return true;
-        } else {
-            System.out.println("The figure is invalid");
-            return false;
-        }
-    }
 
     public double getLength(ArrayList<Integer> point1, ArrayList<Integer> point2) {
         double length = 0;
@@ -80,9 +69,26 @@ public class Parallelogram extends Figure {
     }
 
     @Override
+    public boolean check() {
+        double diag = Math.max(getLength(point1, point3), getLength(point2, point4));
+
+        if (twoDimension && getLength(point1, point2) == getLength(point3, point4) && getLength(point1, point4) == getLength(point2, point3) && diag >= getLength(point1, point2) && diag >= getLength(point2, point3)) {
+            System.out.println("The figure is valid");
+            return true;
+        } else if (threeDimension && getLength(point1, point2) == getLength(point3, point4) && getLength(point1, point4) == getLength(point2, point3) && diag >= getLength(point1, point2) && diag >= getLength(point2, point3)) {
+            System.out.println("The figure is valid");
+            return true;
+        } else {
+            System.out.println("The figure is invalid");
+            return false;
+        }
+    }
+
+    @Override
     public void perimeter() {
         double perimeter = getLength(point1, point2) + getLength(point2, point3) + getLength(point3, point4) + getLength(point4, point1);
         System.out.printf("%.2f\n", perimeter);
+        this.perimeter = perimeter;
     }
 
     @Override
@@ -99,7 +105,10 @@ public class Parallelogram extends Figure {
                 int y2 = yRadix.get(j);
                 area += (double) (x1 * y2 - x2 * y1) / AREA_DIVIDER;
             }
-            System.out.printf("%.2f\n", Math.abs(area));
+
+            area = Math.abs(area);
+
+            System.out.printf("%.2f\n", area);
         } else {
             int x1 = point2.get(FIRST_RADIX) - point1.get(FIRST_RADIX);
             int y1 = point2.get(SECOND_RADIX) - point1.get(SECOND_RADIX);
@@ -111,5 +120,14 @@ public class Parallelogram extends Figure {
             area = Math.sqrt(Math.pow(y1 * z2 - y2 * z1, DEGREE) + Math.pow(-(x1 * z2 - x2 * z1), DEGREE) + Math.pow(x1 * y2 - x2 * y1, DEGREE));
             System.out.printf("%.2f\n", area);
         }
+        this.area = area;
+    }
+
+    public double getPerimeter() {
+        return Math.round(this.perimeter * 100.0) / 100.0;
+    }
+
+    public double getArea() {
+        return Math.round(this.area * 100.0) / 100.0;
     }
 }
