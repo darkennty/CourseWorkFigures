@@ -37,8 +37,11 @@ public class Polygon_Test {
 
         boolean check = polygon.check();
         then(check).isEqualTo(true);
+    }
 
-        point.clear();
+    @Test
+    @DisplayName("Check Polygon validity")
+    public void checkAnotherValidity() {
 
         point.add(0);
         point.add(0);
@@ -52,9 +55,9 @@ public class Polygon_Test {
         point.add(1);
         point.add(0);
 
-        polygon = new Polygon(point);
+        Polygon polygon = new Polygon(point);
 
-        check = polygon.check();
+        boolean check = polygon.check();
         then(check).isEqualTo(true);
     }
 

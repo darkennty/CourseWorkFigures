@@ -1,0 +1,246 @@
+@startuml
+
+class Main {
+    + main(String[] args): void
+    + addRadix(Scanner, ArrayList<Integer>): void
+}
+
+class Figure {
+    + area(): void
+    + check(): boolean
+    + perimeter(): void
+}
+
+class Circle {
+    - area: double
+    - perimeter: double
+    - pointSize: double
+    - radius: double
+
+    + Circle(ArrayList<Integer>)
+    + area(): void
+    + check(): boolean
+    + getArea(): double
+    + getPerimeter(): double
+    + getRadius(ArrayList<Integer>, ArrayList<Integer>): double
+    + perimeter(): void
+}
+
+class Cone {
+    - area: double
+    - centerPoint: ArrayList<Integer>
+    - pointSize: double
+    - randomPoint: ArrayList<Integer>
+    - topPoint: ArrayList<Integer>
+
+    + Cone(ArrayList<Integer>)
+    + area(): void
+    + check(): boolean
+    + getArea(): double
+    + getLength(ArrayList<Integer>, ArrayList<Integer>): double
+    + getPerimeter(): String
+}
+
+class Cylinder {
+    - area: double
+    - height: double
+    - hypotenuse: double
+    - pointSize: double
+    - radius: double
+
+    + Cylinder(ArrayList<Integer>)
+    + area(): void
+    + check(): boolean
+    + getArea(): double
+    + getLength(ArrayList<Integer>): double
+    + getPerimeter(): String
+}
+
+class Parallelogram {
+    - area: double
+    - perimeter: double
+    - pointA: ArrayList<Integer>
+    - pointB: ArrayList<Integer>
+    - pointC: ArrayList<Integer>
+    - pointD: ArrayList<Integer>
+    - threeDimension: boolean
+    - twoDimension: boolean
+    - xRadix: ArrayList<Integer>
+    - yRadix: ArrayList<Integer>
+
+    + Parallelogram(ArrayList<Integer>)
+    + area(): void
+    + check(): boolean
+    + getArea(): double
+    + getLength(ArrayList<Integer>): double
+    + getPerimeter(): double
+    + perimeter(): void
+}
+
+class Polygon {
+    - area: double
+    - perimeter: double
+    - pointSize: int
+    - threeDimension: boolean
+    - twoDimension: boolean
+    - xRadix: ArrayList<Integer>
+    - yRadix: ArrayList<Integer>
+    - zRadix: ArrayList<Integer>
+
+    + Polygon(ArrayList<Integer>)
+    + area(): void
+    + check(): boolean
+    + getArea(): double
+    + getPerimeter(): double
+    + perimeter(): void
+}
+
+class Rectangle {
+    - area: double
+    - perimeter: double
+    - pointA: ArrayList<Integer>
+    - pointB: ArrayList<Integer>
+    - pointC: ArrayList<Integer>
+    - pointD: ArrayList<Integer>
+    - threeDimension: boolean
+    - twoDimension: boolean
+    - xRadix: ArrayList<Integer>
+    - yRadix: ArrayList<Integer>
+
+    + Rectangle(ArrayList<Integer>)
+    + area(): void
+    + check(): boolean
+    + getArea(): double
+    + getLength(ArrayList<Integer>, ArrayList<Integer>): double
+    + getPerimeter(): double
+    + perimeter(): void
+}
+
+class Sphere {
+    - area: double
+    - centerPoint: ArrayList<Integer>
+    - pointSize: double
+    - radius: double
+    - randomPoint: ArrayList<Integer>
+
+    + Sphere(ArrayList<Integer>)
+    + area(): void
+    + check(): boolean
+    + getArea(): double
+    + getPerimeter(): String
+    + getRadius(): double
+}
+
+class Square {
+    - area: double
+    - perimeter: double
+    - pointA: ArrayList<Integer>
+    - pointB: ArrayList<Integer>
+    - pointC: ArrayList<Integer>
+    - pointD: ArrayList<Integer>
+    - threeDimension: boolean
+    - twoDimension: boolean
+
+    + Square(ArrayList<Integer>)
+    + area(): void
+    + check(): boolean
+    + getArea(): double
+    + getLength(ArrayList<Integer>, ArrayList<Integer>): double
+    + getPerimeter(): double
+    + perimeter(): void
+}
+
+class Triangle {
+    - area: double
+    - perimeter: double
+    - pointA: ArrayList<Integer>
+    - pointB: ArrayList<Integer>
+    - pointC: ArrayList<Integer>
+    - pointSize: int
+    - side1: double
+    - side2: double
+    - side3: double
+    - threeDimension: boolean
+    - twoDimension: boolean
+    - xRadix: ArrayList<Integer>
+    - yRadix: ArrayList<Integer>
+
+    + Triangle(ArrayList<Integer>)
+    + area(): void
+    + check(): boolean
+    + getArea(): double
+    + getLength(ArrayList<Integer>, ArrayList<Integer>): double
+    + getPerimeter(): double
+    + perimeter(): void
+}
+
+class TruncatedSphere {
+    - area: double
+    - height: double
+    - pointSize: int
+    - radius: double
+    - truncatedRadius: double
+
+    + TruncatedSphere(ArrayList<Integer>)
+    + area(): void
+    + check(): boolean
+    + getArea(): double
+    + getLength(ArrayList<Integer>, ArrayList<Integer>)
+    + getPerimeter(): String
+}
+
+interface Consts {
+    + AREA_DIVIDER: int
+    + DEGREE: int
+    + FIRST_RADIX: int
+    + SECOND_RADIX: int
+    + THIRD_RADIX: int
+    + MULTIPLE_OF_THREE: int
+    + MULTIPLE_OF_TWO: int
+    + FOUR_POINTS: int
+    + THREE_POINTS: int
+    + TWO_POINTS: int
+    + PI: double
+    + THREE_DIMENSIONAL_FOUR_POINTS: int
+    + THREE_DIMENSIONAL_THREE_POINTS: int
+    + THREE_DIMENSIONAL_TWO_POINTS: int
+    + TWO_DIMENSIONAL_FOUR_POINTS: int
+    + TWO_DIMENSIONAL_THREE_POINTS: int
+    + TWO_DIMENSIONAL_TWO_POINTS: int
+}
+
+Figure <|-- Circle
+Figure <|-- Cone
+Figure <|-- Cylinder
+Figure <|-- Parallelogram
+Figure <|-- Polygon
+Figure <|-- Rectangle
+Figure <|-- Sphere
+Figure <|-- Square
+Figure <|-- Triangle
+Figure <|-- TruncatedSphere
+
+Main ..> Figure
+Main ..> Circle
+Main ..> Cone
+Main ..> Cylinder
+Main ..> Parallelogram
+Main ..> Polygon
+Main ..> Rectangle
+Main ..> Sphere
+Main ..> Square
+Main ..> Triangle
+Main ..> TruncatedSphere
+
+Consts <.. Circle
+Consts <.. Cone
+Consts <.. Cylinder
+Consts <.. Parallelogram
+Consts <.. Polygon
+Consts <.. Rectangle
+Consts <.. Sphere
+Consts <.. Square
+Consts <.. Triangle
+Consts <.. TruncatedSphere
+
+@enduml

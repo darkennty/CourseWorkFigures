@@ -28,8 +28,11 @@ public class Rectangle_Test {
 
         boolean check = rectangle.check();
         then(check).isEqualTo(true);
+    }
 
-        point.clear();
+    @Test
+    @DisplayName("Check Rectangle validity")
+    public void checkAnotherValidity() {
 
         point.add(0);
         point.add(0);
@@ -47,9 +50,9 @@ public class Rectangle_Test {
         point.add(5);
         point.add(0);
 
-        rectangle = new Rectangle(point);
+        Rectangle rectangle = new Rectangle(point);
 
-        check = rectangle.check();
+        boolean check = rectangle.check();
         then(check).isEqualTo(true);
     }
 
@@ -72,8 +75,11 @@ public class Rectangle_Test {
 
         boolean check = rectangle.check();
         then(check).isEqualTo(false);
+    }
 
-        point.clear();
+    @Test
+    @DisplayName("Check Rectangle invalidity")
+    public void checkAnotherInvalidity() {
 
         point.add(0);
         point.add(0);
@@ -91,9 +97,9 @@ public class Rectangle_Test {
         point.add(3);
         point.add(3);
 
-        rectangle = new Rectangle(point);
+        Rectangle rectangle = new Rectangle(point);
 
-        check = rectangle.check();
+        boolean check = rectangle.check();
         then(check).isEqualTo(false);
     }
 
@@ -116,8 +122,11 @@ public class Rectangle_Test {
 
         rectangle.perimeter();
         then(rectangle.getPerimeter()).isEqualTo(22.00);
+    }
 
-        point.clear();
+    @Test
+    @DisplayName("Check Rectangle perimeter calculation")
+    public void checkAnotherPerimeterCalculation() {
 
         point.add(0);
         point.add(0);
@@ -135,7 +144,7 @@ public class Rectangle_Test {
         point.add(5);
         point.add(0);
 
-        rectangle = new Rectangle(point);
+        Rectangle rectangle = new Rectangle(point);
 
         rectangle.perimeter();
         then(rectangle.getPerimeter()).isEqualTo(34.14);
@@ -161,8 +170,11 @@ public class Rectangle_Test {
 
         rectangle.area();
         then(rectangle.getArea()).isEqualTo(10.00);
+    }
 
-        point.clear();
+    @Test
+    @DisplayName("Check Rectangle area calculation")
+    public void checkAnotherAreaCalculation() {
 
         point.add(0);
         point.add(0);
@@ -180,7 +192,7 @@ public class Rectangle_Test {
         point.add(5);
         point.add(0);
 
-        rectangle = new Rectangle(point);
+        Rectangle rectangle = new Rectangle(point);
 
         rectangle.area();
         then(rectangle.getArea()).isEqualTo(70.71);

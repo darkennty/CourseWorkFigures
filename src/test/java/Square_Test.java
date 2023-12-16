@@ -28,8 +28,11 @@ public class Square_Test {
 
         boolean check = square.check();
         then(check).isEqualTo(true);
+    }
 
-        point.clear();
+    @Test
+    @DisplayName("Check Square validity")
+    public void checkAnotherValidity() {
 
         point.add(1);
         point.add(1);
@@ -47,9 +50,9 @@ public class Square_Test {
         point.add(1);
         point.add(1);
 
-        square = new Square(point);
+        Square square = new Square(point);
 
-        check = square.check();
+        boolean check = square.check();
         then(check).isEqualTo(true);
     }
 
@@ -72,8 +75,11 @@ public class Square_Test {
 
         boolean check = square.check();
         then(check).isEqualTo(false);
+    }
 
-        point.clear();
+    @Test
+    @DisplayName("Check Square invalidity")
+    public void checkAnotherInvalidity() {
 
         point.add(1);
         point.add(1);
@@ -91,9 +97,9 @@ public class Square_Test {
         point.add(2);
         point.add(0);
 
-        square = new Square(point);
+        Square square = new Square(point);
 
-        check = square.check();
+        boolean check = square.check();
         then(check).isEqualTo(false);
     }
 
@@ -116,8 +122,11 @@ public class Square_Test {
 
         square.perimeter();
         then(square.getPerimeter()).isEqualTo(20.00);
+    }
 
-        point.clear();
+    @Test
+    @DisplayName("Check Square perimeter calculation")
+    public void checkAnotherPerimeterCalculation() {
 
         point.add(1);
         point.add(1);
@@ -135,7 +144,7 @@ public class Square_Test {
         point.add(1);
         point.add(1);
 
-        square = new Square(point);
+        Square square = new Square(point);
 
         square.perimeter();
         then(square.getPerimeter()).isEqualTo(8.00);
@@ -161,8 +170,11 @@ public class Square_Test {
 
         square.area();
         then(square.getArea()).isEqualTo(25.00);
+    }
 
-        point.clear();
+    @Test
+    @DisplayName("Check Square area calculation")
+    public void checkAnotherAreaCalculation() {
 
         point.add(1);
         point.add(1);
@@ -180,7 +192,7 @@ public class Square_Test {
         point.add(1);
         point.add(1);
 
-        square = new Square(point);
+        Square square = new Square(point);
 
         square.area();
         then(square.getArea()).isEqualTo(4.00);

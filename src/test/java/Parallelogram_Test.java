@@ -31,8 +31,11 @@ public class Parallelogram_Test {
 
         boolean check = parallelogram.check();
         then(check).isEqualTo(true);
+    }
 
-        point.clear();
+    @Test
+    @DisplayName("Check Parallelogram validity")
+    public void checkAnotherValidity() {
 
         point.add(0);
         point.add(0);
@@ -46,9 +49,9 @@ public class Parallelogram_Test {
         point.add(1);
         point.add(0);
 
-        parallelogram = new Parallelogram(point);
+        Parallelogram parallelogram = new Parallelogram(point);
 
-        check = parallelogram.check();
+        boolean check = parallelogram.check();
         then(check).isEqualTo(true);
     }
 

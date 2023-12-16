@@ -25,8 +25,11 @@ public class Triangle_Test {
 
         boolean check = triangle.check();
         then(check).isEqualTo(true);
+    }
 
-        point.clear();
+    @Test
+    @DisplayName("Check Triangle validity")
+    public void checkAnotherValidity() {
 
         point.add(1);
         point.add(1);
@@ -40,9 +43,9 @@ public class Triangle_Test {
         point.add(1);
         point.add(10);
 
-        triangle = new Triangle(point);
+        Triangle triangle = new Triangle(point);
 
-        check = triangle.check();
+        boolean check = triangle.check();
 
         then(check).isEqualTo(true);
     }
@@ -64,8 +67,11 @@ public class Triangle_Test {
 
         boolean check = triangle.check();
         then(check).isEqualTo(false);
+    }
 
-        point.clear();
+    @Test
+    @DisplayName("Check Triangle invalidity")
+    public void checkAnotherInvalidity() {
 
         point.add(1);
         point.add(1);
@@ -79,9 +85,9 @@ public class Triangle_Test {
         point.add(3);
         point.add(3);
 
-        triangle = new Triangle(point);
+        Triangle triangle = new Triangle(point);
 
-        check = triangle.check();
+        boolean check = triangle.check();
         then(check).isEqualTo(false);
     }
 
@@ -101,8 +107,11 @@ public class Triangle_Test {
 
         triangle.perimeter();
         then(triangle.getPerimeter()).isEqualTo(32.36);
+    }
 
-        point.clear();
+    @Test
+    @DisplayName("Check Triangle perimeter calculation")
+    public void checkAnotherPerimeterCalculation() {
 
         point.add(0);
         point.add(0);
@@ -116,7 +125,7 @@ public class Triangle_Test {
         point.add(0);
         point.add(5);
 
-        triangle = new Triangle(point);
+        Triangle triangle = new Triangle(point);
 
         triangle.perimeter();
         then(triangle.getPerimeter()).isEqualTo(11.10);
@@ -139,8 +148,11 @@ public class Triangle_Test {
 
         triangle.area();
         then(triangle.getArea()).isEqualTo(50.00);
+    }
 
-        point.clear();
+    @Test
+    @DisplayName("Check Triangle area calculation")
+    public void checkAnotherAreaCalculation() {
 
         point.add(0);
         point.add(0);
@@ -154,7 +166,7 @@ public class Triangle_Test {
         point.add(0);
         point.add(5);
 
-        triangle = new Triangle(point);
+        Triangle triangle = new Triangle(point);
 
         triangle.area();
         then(triangle.getArea()).isEqualTo(2.50);

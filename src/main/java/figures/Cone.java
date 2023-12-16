@@ -30,16 +30,15 @@ public class Cone extends Figure {
                 }
             }
         }
-
     }
 
     @Override
     public boolean check() {
         if (pointSize == THREE_DIMENSIONAL_THREE_POINTS) {
-            double osnovaniye = getLength(centerPoint, randomPoint);
+            double radius = getLength(centerPoint, randomPoint);
             double height = getLength(centerPoint, topPoint);
             double hypotenuse = getLength(randomPoint, topPoint);
-            if (hypotenuse == Math.sqrt(Math.pow(osnovaniye, DEGREE) + Math.pow(height, DEGREE))) {
+            if (hypotenuse == Math.sqrt(Math.pow(radius, DEGREE) + Math.pow(height, DEGREE))) {
                 System.out.println("The figure is valid");
                 return true;
             } else {

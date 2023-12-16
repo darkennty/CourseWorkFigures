@@ -16,14 +16,14 @@ import static consts.Consts.THIRD_RADIX;
 
 public class Rectangle extends Figure {
 
-    private final ArrayList<Integer> point1 = new ArrayList<>();
-    private final ArrayList<Integer> point2 = new ArrayList<>();
-    private final ArrayList<Integer> point3 = new ArrayList<>();
-    private final ArrayList<Integer> point4 = new ArrayList<>();
+    private final ArrayList<Integer> pointA = new ArrayList<>();
+    private final ArrayList<Integer> pointB = new ArrayList<>();
+    private final ArrayList<Integer> pointC = new ArrayList<>();
+    private final ArrayList<Integer> pointD = new ArrayList<>();
     private final ArrayList<Integer> xRadix = new ArrayList<>();
     private final ArrayList<Integer> yRadix = new ArrayList<>();
-    boolean twoDimension;
-    boolean threeDimension;
+    private final boolean twoDimension;
+    private final boolean threeDimension;
     private double perimeter;
     private double area;
 
@@ -41,13 +41,13 @@ public class Rectangle extends Figure {
                 }
 
                 if (i < pointSize / FOUR_POINTS) {
-                    this.point1.add(point.get(i));
+                    this.pointA.add(point.get(i));
                 } else if (i < pointSize / TWO_POINTS) {
-                    this.point2.add(point.get(i));
+                    this.pointB.add(point.get(i));
                 } else if (i < THREE_POINTS * pointSize / FOUR_POINTS) {
-                    this.point3.add(point.get(i));
+                    this.pointC.add(point.get(i));
                 } else {
-                    this.point4.add(point.get(i));
+                    this.pointD.add(point.get(i));
                 }
             }
         }
@@ -69,12 +69,12 @@ public class Rectangle extends Figure {
 
     @Override
     public boolean check() {
-        double side1 = getLength(point1, point2);
-        double side2 = getLength(point2, point3);
-        double side3 = getLength(point3, point4);
-        double side4 = getLength(point4, point1);
-        double diag1 = getLength(point1, point3);
-        double diag2 = getLength(point4, point2);
+        double side1 = getLength(pointA, pointB);
+        double side2 = getLength(pointB, pointC);
+        double side3 = getLength(pointC, pointD);
+        double side4 = getLength(pointD, pointA);
+        double diag1 = getLength(pointA, pointC);
+        double diag2 = getLength(pointD, pointB);
 
         if ((this.twoDimension || this.threeDimension) && diag1 == diag2 && side1 == side3 && side4 == side2) {
             System.out.println("The figure is valid");
@@ -87,7 +87,7 @@ public class Rectangle extends Figure {
 
     @Override
     public void perimeter() {
-        double perimeter = getLength(point1, point2) + getLength(point2, point3) + getLength(point3, point4) + getLength(point4, point1);
+        double perimeter = getLength(pointA, pointB) + getLength(pointB, pointC) + getLength(pointC, pointD) + getLength(pointD, pointA);
         System.out.printf("%.2f\n", perimeter);
         this.perimeter = perimeter;
     }
@@ -111,12 +111,12 @@ public class Rectangle extends Figure {
 
             System.out.printf("%.2f\n", area);
         } else {
-            int x1 = point2.get(FIRST_RADIX) - point1.get(FIRST_RADIX);
-            int y1 = point2.get(SECOND_RADIX) - point1.get(SECOND_RADIX);
-            int z1 = point2.get(THIRD_RADIX) - point1.get(THIRD_RADIX);
-            int x2 = point4.get(FIRST_RADIX) - point1.get(FIRST_RADIX);
-            int y2 = point4.get(SECOND_RADIX) - point1.get(SECOND_RADIX);
-            int z2 = point4.get(THIRD_RADIX) - point1.get(THIRD_RADIX);
+            int x1 = pointB.get(FIRST_RADIX) - pointA.get(FIRST_RADIX);
+            int y1 = pointB.get(SECOND_RADIX) - pointA.get(SECOND_RADIX);
+            int z1 = pointB.get(THIRD_RADIX) - pointA.get(THIRD_RADIX);
+            int x2 = pointD.get(FIRST_RADIX) - pointA.get(FIRST_RADIX);
+            int y2 = pointD.get(SECOND_RADIX) - pointA.get(SECOND_RADIX);
+            int z2 = pointD.get(THIRD_RADIX) - pointA.get(THIRD_RADIX);
 
             area = Math.sqrt(Math.pow(y1 * z2 - y2 * z1, DEGREE) + Math.pow(-(x1 * z2 - x2 * z1), DEGREE) + Math.pow(x1 * y2 - x2 * y1, DEGREE));
             System.out.printf("%.2f\n", area);

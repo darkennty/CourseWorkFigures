@@ -6,23 +6,21 @@ import static consts.Consts.*;
 
 public class Triangle extends Figure {
 
-    private final ArrayList<Integer> point1 = new ArrayList<>();
-    private final ArrayList<Integer> point2 = new ArrayList<>();
-    private final ArrayList<Integer> point3 = new ArrayList<>();
+    private final ArrayList<Integer> pointA = new ArrayList<>();
+    private final ArrayList<Integer> pointB = new ArrayList<>();
+    private final ArrayList<Integer> pointC = new ArrayList<>();
     private final ArrayList<Integer> xRadix = new ArrayList<>();
     private final ArrayList<Integer> yRadix = new ArrayList<>();
-    private final ArrayList<Integer> zRadix = new ArrayList<>();
-    private final int pointSize;
     private double side1;
     private double side2;
     private double side3;
     private double perimeter;
     private double area;
-    boolean twoDimension;
-    boolean threeDimension;
+    private final boolean twoDimension;
+    private final boolean threeDimension;
 
     public Triangle(ArrayList<Integer> point) {
-        this.pointSize = point.size();
+        int pointSize = point.size();
         this.threeDimension = pointSize == THREE_DIMENSIONAL_THREE_POINTS;
         this.twoDimension = pointSize == TWO_DIMENSIONAL_THREE_POINTS;
 
@@ -35,39 +33,32 @@ public class Triangle extends Figure {
                 }
 
                 if (i < pointSize / THREE_POINTS) {
-                    this.point1.add(point.get(i));
+                    this.pointA.add(point.get(i));
                 } else if (i < TWO_POINTS * pointSize / THREE_POINTS) {
-                    this.point2.add(point.get(i));
+                    this.pointB.add(point.get(i));
                 } else {
-                    this.point3.add(point.get(i));
+                    this.pointC.add(point.get(i));
                 }
             }
 
-            this.side1 = getLength(point1, point2);
-            this.side2 = getLength(point2, point3);
-            this.side3 = getLength(point1, point3);
+            this.side1 = getLength(pointA, pointB);
+            this.side2 = getLength(pointB, pointC);
+            this.side3 = getLength(pointA, pointC);
         } else if (this.threeDimension) {
             for (int i = 0; i < pointSize; i++) {
-                if (i % MULTIPLE_OF_THREE == 0 ) {
-                    this.xRadix.add(point.get(i));
-                } else if ((i + 1) % MULTIPLE_OF_THREE == 0){
-                    this.zRadix.add(point.get(i));
-                } else {
-                    this.yRadix.add(point.get(i));
-                }
 
                 if (i < pointSize / THREE_POINTS) {
-                    this.point1.add(point.get(i));
+                    this.pointA.add(point.get(i));
                 } else if (i < TWO_POINTS * pointSize / THREE_POINTS) {
-                    this.point2.add(point.get(i));
+                    this.pointB.add(point.get(i));
                 } else {
-                    this.point3.add(point.get(i));
+                    this.pointC.add(point.get(i));
                 }
             }
 
-            this.side1 = getLength(point1, point2);
-            this.side2 = getLength(point2, point3);
-            this.side3 = getLength(point1, point3);
+            this.side1 = getLength(pointA, pointB);
+            this.side2 = getLength(pointB, pointC);
+            this.side3 = getLength(pointA, pointC);
         }
     }
 
@@ -126,12 +117,12 @@ public class Triangle extends Figure {
             area = Math.abs(area);
             System.out.printf("%.2f\n", area);
         } else {
-            int x1 = point2.get(FIRST_RADIX) - point1.get(FIRST_RADIX);
-            int y1 = point2.get(SECOND_RADIX) - point1.get(SECOND_RADIX);
-            int z1 = point2.get(THIRD_RADIX) - point1.get(THIRD_RADIX);
-            int x2 = point3.get(FIRST_RADIX) - point1.get(FIRST_RADIX);
-            int y2 = point3.get(SECOND_RADIX) - point1.get(SECOND_RADIX);
-            int z2 = point3.get(THIRD_RADIX) - point1.get(THIRD_RADIX);
+            int x1 = pointB.get(FIRST_RADIX) - pointA.get(FIRST_RADIX);
+            int y1 = pointB.get(SECOND_RADIX) - pointA.get(SECOND_RADIX);
+            int z1 = pointB.get(THIRD_RADIX) - pointA.get(THIRD_RADIX);
+            int x2 = pointC.get(FIRST_RADIX) - pointA.get(FIRST_RADIX);
+            int y2 = pointC.get(SECOND_RADIX) - pointA.get(SECOND_RADIX);
+            int z2 = pointC.get(THIRD_RADIX) - pointA.get(THIRD_RADIX);
 
             area = Math.sqrt(Math.pow(y1 * z2 - y2 * z1, DEGREE) + Math.pow(-(x1 * z2 - x2 * z1), DEGREE) + Math.pow(x1 * y2 - x2 * y1, DEGREE));
             area /= AREA_DIVIDER;

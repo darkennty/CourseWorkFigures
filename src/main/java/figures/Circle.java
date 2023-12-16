@@ -33,7 +33,7 @@ public class Circle extends Figure {
 
     @Override
     public boolean check() {
-        if ((pointSize == TWO_DIMENSIONAL_TWO_POINTS || pointSize == THREE_DIMENSIONAL_TWO_POINTS) && this.radius > 0) {
+        if (pointSize == TWO_DIMENSIONAL_TWO_POINTS || pointSize == THREE_DIMENSIONAL_TWO_POINTS) {
             System.out.println("The figure is valid");
             return true;
         } else {

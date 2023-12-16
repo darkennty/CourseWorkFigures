@@ -12,11 +12,6 @@ import static consts.Consts.DEGREE;
 import static consts.Consts.PI;
 
 public class Cylinder extends Figure {
-
-    private final ArrayList<Integer> bottomCenterPoint = new ArrayList<>();
-    private final ArrayList<Integer> topCenterPoint = new ArrayList<>();
-    private final ArrayList<Integer> randomPoint = new ArrayList<>();
-
     private final double pointSize;
     private double radius;
     private double hypotenuse;
@@ -24,15 +19,19 @@ public class Cylinder extends Figure {
     private double area;
 
     public Cylinder (ArrayList<Integer> point) {
+        ArrayList<Integer> bottomCenterPoint = new ArrayList<>();
+        ArrayList<Integer> topCenterPoint = new ArrayList<>();
+        ArrayList<Integer> randomPoint = new ArrayList<>();
+
         this.pointSize = point.size();
         if (pointSize == THREE_DIMENSIONAL_THREE_POINTS) {
             for (int i = 0; i < this.pointSize; i++) {
                 if (i < this.pointSize / THREE_POINTS) {
-                    this.bottomCenterPoint.add(point.get(i));
+                    bottomCenterPoint.add(point.get(i));
                 } else if (i < TWO_POINTS * this.pointSize / THREE_POINTS) {
-                    this.topCenterPoint.add(point.get(i));
+                    topCenterPoint.add(point.get(i));
                 } else {
-                    this.randomPoint.add(point.get(i));
+                    randomPoint.add(point.get(i));
                 }
             }
 
@@ -48,12 +47,11 @@ public class Cylinder extends Figure {
     @Override
     public boolean check() {
         if (pointSize == THREE_DIMENSIONAL_THREE_POINTS) {
-            MathContext context = new MathContext(5, RoundingMode.HALF_UP);
 
-            BigDecimal result1 = new BigDecimal(hypotenuse, context);
-            BigDecimal result2 = new BigDecimal(Math.sqrt(Math.pow(radius, DEGREE) + Math.pow(height, DEGREE)), context);
+            hypotenuse = Math.round(hypotenuse * 100.0) / 100.0;
+            double result = Math.round(Math.sqrt(Math.pow(radius, DEGREE) + Math.pow(height, DEGREE)) * 100.0) / 100.0;
 
-            if (result1.equals(result2)) {
+            if (hypotenuse == result) {
                 System.out.println("The figure is valid");
                 return true;
             } else {

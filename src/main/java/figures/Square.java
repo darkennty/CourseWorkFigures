@@ -11,12 +11,12 @@ import static consts.Consts.DEGREE;
 
 public class Square extends Figure {
 
-    private final ArrayList<Integer> point1 = new ArrayList<>();
-    private final ArrayList<Integer> point2 = new ArrayList<>();
-    private final ArrayList<Integer> point3 = new ArrayList<>();
-    private final ArrayList<Integer> point4 = new ArrayList<>();
-    boolean twoDimension;
-    boolean threeDimension;
+    private final ArrayList<Integer> pointA = new ArrayList<>();
+    private final ArrayList<Integer> pointB = new ArrayList<>();
+    private final ArrayList<Integer> pointC = new ArrayList<>();
+    private final ArrayList<Integer> pointD = new ArrayList<>();
+    private final boolean twoDimension;
+    private final boolean threeDimension;
     private double perimeter;
     private double area;
 
@@ -28,13 +28,13 @@ public class Square extends Figure {
         if (threeDimension || twoDimension) {
             for (int i = 0; i < pointSize; i++) {
                 if (i < pointSize / FOUR_POINTS) {
-                    this.point1.add(point.get(i));
+                    this.pointA.add(point.get(i));
                 } else if (i < pointSize / TWO_POINTS) {
-                    this.point2.add(point.get(i));
+                    this.pointB.add(point.get(i));
                 } else if (i < THREE_POINTS * pointSize / FOUR_POINTS) {
-                    this.point3.add(point.get(i));
+                    this.pointC.add(point.get(i));
                 } else {
-                    this.point4.add(point.get(i));
+                    this.pointD.add(point.get(i));
                 }
             }
         }
@@ -60,12 +60,12 @@ public class Square extends Figure {
 
     @Override
     public boolean check() {
-        double side1 = getLength(point1, point2);
-        double side2 = getLength(point2, point3);
-        double side3 = getLength(point3, point4);
-        double side4 = getLength(point4, point1);
-        double diag1 = getLength(point1, point3);
-        double diag2 = getLength(point4, point2);
+        double side1 = getLength(pointA, pointB);
+        double side2 = getLength(pointB, pointC);
+        double side3 = getLength(pointC, pointD);
+        double side4 = getLength(pointD, pointA);
+        double diag1 = getLength(pointA, pointC);
+        double diag2 = getLength(pointD, pointB);
 
         if ((twoDimension || threeDimension) && diag1 == diag2 && side1 == side3 && side4 == side2 && side1 == side2) {
             System.out.println("The figure is valid");
@@ -78,7 +78,7 @@ public class Square extends Figure {
 
     @Override
     public void perimeter() {
-        double side = getLength(point1, point2);
+        double side = getLength(pointA, pointB);
         final int fourSides = 4;
         double perimeter = side * fourSides;
         System.out.printf("%.2f\n", perimeter);
@@ -87,7 +87,7 @@ public class Square extends Figure {
 
     @Override
     public void area() {
-        double area = Math.pow(getLength(point1, point2), DEGREE);
+        double area = Math.pow(getLength(pointA, pointB), DEGREE);
         System.out.printf("%.2f\n", area);
         this.area = area;
     }

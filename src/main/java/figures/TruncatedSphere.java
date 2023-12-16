@@ -46,7 +46,7 @@ public class TruncatedSphere extends Figure {
 
             this.radius = getLength(centerPoint, randomPoint);
             this.truncatedRadius = getLength(truncatedCenterPoint, randomTruncatedPoint);
-            this.height = Math.abs(centerPoint.get(THIRD_RADIX) - truncatedCenterPoint.get(THIRD_RADIX));
+            this.height = truncatedCenterPoint.get(THIRD_RADIX) - centerPoint.get(THIRD_RADIX);
         }
     }
 
@@ -60,7 +60,7 @@ public class TruncatedSphere extends Figure {
 
     @Override
     public boolean check() {
-        if (this.pointSize == THREE_DIMENSIONAL_THREE_POINTS && this.radius > 0 && height <= radius) {
+        if (this.pointSize == THREE_DIMENSIONAL_THREE_POINTS && Math.abs(height) <= radius) {
             System.out.println("The figure is valid");
             return true;
         } else {
@@ -74,7 +74,8 @@ public class TruncatedSphere extends Figure {
         final int coefficient1 = 4;
         final int coefficient2 = 2;
 
-        double area = coefficient1 * PI * Math.pow(radius, DEGREE) - coefficient2 * PI * radius * (radius - height) + PI * Math.pow(truncatedRadius, DEGREE);
+        double area = coefficient1 * PI * Math.pow(radius, DEGREE) - coefficient2 * PI * radius * (radius - height)
+                + PI * Math.pow(truncatedRadius, DEGREE);
 
         System.out.printf("%.2f\n", area);
         this.area = area;

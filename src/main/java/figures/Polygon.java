@@ -20,8 +20,8 @@ public class Polygon extends Figure {
     private final ArrayList<Integer> yRadix = new ArrayList<>();
     private final ArrayList<Integer> zRadix = new ArrayList<>();
     private final int pointSize;
-    boolean twoDimension;
-    boolean threeDimension;
+    private final boolean twoDimension;
+    private final boolean threeDimension;
     private double perimeter;
     private double area;
 

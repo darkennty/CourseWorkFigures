@@ -22,8 +22,11 @@ public class Circle_Test {
 
         boolean check = circle.check();
         then(check).isEqualTo(true);
+    }
 
-        point.clear();
+    @Test
+    @DisplayName("Check Circle validity")
+    public void checkAnotherValidity() {
 
         point.add(10);
         point.add(10);
@@ -31,14 +34,14 @@ public class Circle_Test {
         point.add(100);
         point.add(100);
 
-        circle = new Circle(point);
+        Circle circle = new Circle(point);
 
-        check = circle.check();
+        boolean check = circle.check();
         then(check).isEqualTo(true);
     }
 
     @Test
-    @DisplayName("Check Circle perimeter calculation")
+    @DisplayName("Check two-dimensional Circle perimeter calculation")
     public void checkTwoDimensionalPerimeter() {
         point.add(0);
         point.add(0);
